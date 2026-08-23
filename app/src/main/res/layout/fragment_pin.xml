@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/auth_horizontal_padding">
+
+    <TextView
+        android:id="@+id/txt_pin_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="@string/title_enter_pin"
+        android:textColor="@color/teal_accent_dark"
+        android:textSize="@dimen/pin_title_text_size"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/input_pin"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/auth_input_height"
+        android:layout_marginTop="@dimen/pin_title_spacing_bottom"
+        android:background="@drawable/bg_auth_input"
+        android:paddingHorizontal="@dimen/auth_input_padding_horizontal"
+        android:hint="@string/hint_enter_pin"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_secondary"
+        android:textSize="@dimen/text_size_body"
+        android:inputType="numberPassword"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        app:layout_constraintTop_toBottomOf="@id/txt_pin_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_pin_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/auth_error_spacing_top"
+        android:text="@string/error_missing_pin"
+        android:textColor="@color/error_text"
+        android:textSize="@dimen/auth_error_text_size"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/input_pin"
+        app:layout_constraintStart_toStartOf="@id/input_pin"
+        app:layout_constraintEnd_toEndOf="@id/input_pin" />
+
+    <TextView
+        android:id="@+id/btn_continue_pin"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/auth_button_height"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/bg_button_filled"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/btn_continue"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_body"
+        android:textStyle="bold"
+        android:letterSpacing="0.05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

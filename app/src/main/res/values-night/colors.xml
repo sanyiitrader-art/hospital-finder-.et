@@ -15,6 +15,8 @@
     <color name="text_primary">#F2F5F5</color>
     <color name="text_secondary">#9FB0AF</color>
     <color name="text_on_accent">#052E2A</color>
+        <!-- Auth validation -->
+    <color name="error_text">#FF6B5E</color>
 
     <!-- Borders -->
     <color name="border_default">#2A3132</color>

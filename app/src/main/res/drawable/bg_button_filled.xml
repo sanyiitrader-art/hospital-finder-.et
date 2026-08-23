@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/teal_accent_dark" />
+    <corners android:radius="@dimen/auth_button_corner_radius" />
+</shape>

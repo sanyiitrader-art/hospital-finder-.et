@@ -8,12 +8,16 @@
     android:paddingHorizontal="@dimen/drawer_padding">
 
     <!-- Profile area -->
-    <LinearLayout
+        <LinearLayout
+        android:id="@+id/profile_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingBottom="24dp">
+        android:paddingBottom="24dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/img_avatar"

@@ -1,9 +1,15 @@
 package com.hospitalfinder.app
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.hospitalfinder.app.auth.LocalAuthRepository
+import com.hospitalfinder.app.auth.SessionState
 import com.hospitalfinder.app.databinding.ActivityMainBinding
 import com.hospitalfinder.app.databinding.NavDrawerContentBinding
+import com.hospitalfinder.app.ui.auth.LoginActivity
 import com.hospitalfinder.app.ui.list.HospitalListFragment
 import com.hospitalfinder.app.ui.map.HospitalMapFragment
 import com.hospitalfinder.app.ui.menu.DrawerController
@@ -14,26 +20,59 @@ import com.hospitalfinder.app.util.setSelectedState
  * the bottom controls) and the side drawer menu (opened via the top-right
  * hamburger button). Uses the fragment show/hide pattern so switching
  * views is instantaneous and each fragment's state is preserved.
+ *
+ * On a fresh process start (SessionState.unlockedThisProcess == false),
+ * this activity first routes through LoginActivity (login/PIN gate)
+ * before any of the existing UI below is set up. Once unlocked within
+ * this process, returning to MainActivity (e.g. via back stack or
+ * background/foreground) does not re-trigger the gate.
  */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerController: DrawerController
+    private val authRepository by lazy { LocalAuthRepository(applicationContext) }
 
     private var listFragment: HospitalListFragment? = null
     private var mapFragment: HospitalMapFragment? = null
     private var activeTab = TAB_LIST
+    private var mainUiInitialized = false
+
+    private val loginLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            // Whether the user authenticated or chose guest, LoginActivity
+            // sets SessionState.unlockedThisProcess = true before finishing
+            // in both success paths. If it was somehow cancelled without
+            // that flag being set, re-check and re-launch rather than
+            // leaving the app in a half-initialized state.
+            if (SessionState.unlockedThisProcess) {
+                initializeMainUiIfNeeded()
+            } else {
+                loginLauncher.launch(LoginActivity.newIntent(this))
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (SessionState.unlockedThisProcess) {
+            initializeMainUiIfNeeded()
+        } else {
+            loginLauncher.launch(LoginActivity.newIntent(this))
+        }
+    }
+
+    private fun initializeMainUiIfNeeded() {
+        if (mainUiInitialized) return
+        mainUiInitialized = true
+
         setupFragments()
         setupBottomNav()
         setupDrawer()
 
-        activeTab = savedInstanceState?.getInt(STATE_ACTIVE_TAB, TAB_LIST) ?: TAB_LIST
+        activeTab = TAB_LIST
         applyTabSelection(activeTab)
     }
 
@@ -61,7 +100,11 @@ class MainActivity : AppCompatActivity() {
 
         drawerController = DrawerController(
             activityBinding = binding,
-            drawerBinding = drawerBinding
+            drawerBinding = drawerBinding,
+            authRepository = authRepository,
+            onGuestProfileClick = {
+                loginLauncher.launch(LoginActivity.newIntentForceLogin(this))
+            }
         )
         drawerController.setup()
     }

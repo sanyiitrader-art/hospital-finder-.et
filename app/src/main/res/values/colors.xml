@@ -3,6 +3,8 @@
     <!-- Brand -->
     <color name="teal_accent">#2DD4BF</color>
     <color name="teal_accent_dark">#14B8A6</color>
+        <!-- Auth validation -->
+    <color name="error_text">#C0392B</color>
 
     <!-- Surfaces -->
     <color name="background">#F5F7F7</color>

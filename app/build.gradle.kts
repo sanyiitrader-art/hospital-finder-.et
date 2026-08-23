@@ -80,6 +80,9 @@ dependencies {
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation("androidx.fragment:fragment-ktx:1.8.2")
     implementation("org.osmdroid:osmdroid-android:6.1.20")
+
+    // Encrypted local key-value storage for local/demo auth + PIN state.
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
 }
 
 val generateLauncherIcons = tasks.register<GenerateLauncherIconsTask>("generateLauncherIcons") {

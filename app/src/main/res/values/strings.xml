@@ -23,4 +23,25 @@
 
     <!-- Map -->
     <string name="map_hospital_marker">Hospital location</string>
+        <!-- Auth: login -->
+    <string name="app_name_login">HOSPITAL FINDER</string>
+    <string name="hint_username">username</string>
+    <string name="hint_phone_number">phone number</string>
+    <string name="error_missing_username">Please enter username</string>
+    <string name="error_missing_phone">Please enter phone number</string>
+    <string name="btn_continue">CONTINUE</string>
+    <string name="btn_continue_google">continue\nwith google</string>
+    <string name="label_or">or</string>
+    <string name="close_login">Close</string>
+    <string name="google_icon_desc">Google</string>
+
+    <!-- Auth: PIN -->
+    <string name="title_enter_pin">Enter Pin</string>
+    <string name="hint_enter_pin">Enter Pin</string>
+    <string name="error_missing_pin">Please enter PIN</string>
+    <string name="error_incorrect_pin">Incorrect PIN</string>
+
+    <!-- Drawer: guest state -->
+    <string name="guest_username">Guest</string>
+    <string name="guest_prompt">Tap to sign in</string>
 </resources>
