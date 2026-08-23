@@ -40,15 +40,14 @@ class MainActivity : AppCompatActivity() {
 
     private val loginLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            // Whether the user authenticated or chose guest, LoginActivity
-            // sets SessionState.unlockedThisProcess = true before finishing
-            // in both success paths. If it was somehow cancelled without
-            // that flag being set, re-check and re-launch rather than
-            // leaving the app in a half-initialized state.
             if (SessionState.unlockedThisProcess) {
                 initializeMainUiIfNeeded()
             } else {
-                loginLauncher.launch(LoginActivity.newIntent(this))
+                // The user backed out of the login/PIN flow without
+                // completing it (neither authenticated nor guest) — there
+                // is no valid state to show, so close the app rather than
+                // leaving a blank MainActivity or looping the login screen.
+                finish()
             }
         }
 
