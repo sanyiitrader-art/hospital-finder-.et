@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand -->
+    <color name="teal_accent">#2DD4BF</color>
+    <color name="teal_accent_dark">#14B8A6</color>
+
+    <!-- Surfaces -->
+    <color name="background">#F5F7F7</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#EDF1F1</color>
+    <color name="top_bar_bg">#FFFFFF</color>
+    <color name="bottom_bar_bg">#FFFFFF</color>
+
+    <!-- Text -->
+    <color name="text_primary">#101414</color>
+    <color name="text_secondary">#5C6666</color>
+    <color name="text_on_accent">#052E2A</color>
+
+    <!-- Borders -->
+    <color name="border_default">#D8E0E0</color>
+    <color name="border_accent">#2DD4BF</color>
+
+    <!-- Status -->
+    <color name="status_open">#2DD4BF</color>
+    <color name="status_closed">#9AA5A5</color>
+
+    <!-- Drawer scrim -->
+    <color name="scrim">#66000000</color>
+
+    <!-- Placeholders -->
+    <color name="placeholder_bg">#E4E9E9</color>
+    <color name="placeholder_icon">#9AA5A5</color>
+    <color name="ic_launcher_background">#0D1112</color>
+</resources>

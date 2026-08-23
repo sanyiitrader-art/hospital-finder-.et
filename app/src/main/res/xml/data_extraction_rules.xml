@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- No user data is persisted at this stage of the app; nothing to include. -->
+    </cloud-backup>
+</data-extraction-rules>

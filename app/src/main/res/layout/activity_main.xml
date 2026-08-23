@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Main content -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <!-- Top bar -->
+        <View
+            android:id="@+id/top_bar_bg"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/top_bar_height"
+            android:background="@color/top_bar_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/top_bar_divider"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:background="@color/teal_accent"
+            app:layout_constraintTop_toBottomOf="@id/top_bar_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_menu"
+            android:layout_width="@dimen/top_bar_height"
+            android:layout_height="@dimen/top_bar_height"
+            android:padding="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/menu_open"
+            android:src="@drawable/ic_menu"
+            app:layout_constraintTop_toTopOf="@id/top_bar_bg"
+            app:layout_constraintBottom_toBottomOf="@id/top_bar_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="4dp" />
+
+        <!-- Fragment container for list/map switching -->
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/top_bar_divider"
+            app:layout_constraintBottom_toTopOf="@id/bottom_bar_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Bottom bar -->
+        <View
+            android:id="@+id/bottom_bar_bg"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bottom_bar_height"
+            android:background="@drawable/bg_bottom_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/bottom_nav_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/bottom_bar_padding_horizontal"
+            android:paddingVertical="@dimen/bottom_bar_padding_vertical"
+            app:layout_constraintTop_toTopOf="@id/bottom_bar_bg"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_bar_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <FrameLayout
+                android:id="@+id/btn_nav_list"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_active_indicator"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/nav_list_view">
+
+                <ImageView
+                    android:layout_width="@dimen/bottom_nav_icon_size"
+                    android:layout_height="@dimen/bottom_nav_icon_size"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_list_view"
+                    android:importantForAccessibility="no" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="@dimen/bottom_bar_item_spacing"
+                android:layout_height="1dp" />
+
+            <FrameLayout
+                android:id="@+id/btn_nav_map"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_active_indicator"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/nav_map_view">
+
+                <ImageView
+                    android:layout_width="@dimen/bottom_nav_icon_size"
+                    android:layout_height="@dimen/bottom_nav_icon_size"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_map_view"
+                    android:importantForAccessibility="no" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Nav drawer -->
+        <!-- Nav drawer -->
+    <include
+        android:id="@+id/nav_drawer_content"
+        layout="@layout/nav_drawer_content"
+        android:layout_width="@dimen/drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="end" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

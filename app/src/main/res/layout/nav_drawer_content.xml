@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/surface"
+    android:paddingTop="48dp"
+    android:paddingHorizontal="@dimen/drawer_padding">
+
+    <!-- Profile area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="24dp">
+
+        <ImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="@dimen/drawer_avatar_size"
+            android:layout_height="@dimen/drawer_avatar_size"
+            android:src="@drawable/ic_avatar_placeholder"
+            android:contentDescription="@string/profile_avatar_desc" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/drawer_avatar_spacing"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_username"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Username"
+                xmlns:tools="http://schemas.android.com/tools" />
+
+            <TextView
+                android:id="@+id/txt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_size_email"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="user@gmail.com"
+                xmlns:tools="http://schemas.android.com/tools" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/border_default" />
+
+    <!-- Menu items -->
+    <LinearLayout
+        android:id="@+id/item_settings"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawer_item_height"
+        android:layout_marginTop="@dimen/drawer_divider_margin_top"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/drawer_item_icon_size"
+            android:layout_height="@dimen/drawer_item_icon_size"
+            android:src="@drawable/ic_settings"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/drawer_item_spacing"
+            android:text="@string/menu_settings"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_rate_app"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawer_item_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/drawer_item_icon_size"
+            android:layout_height="@dimen/drawer_item_icon_size"
+            android:src="@drawable/ic_rate_star"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/drawer_item_spacing"
+            android:text="@string/menu_rate_app"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_help"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawer_item_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/drawer_item_icon_size"
+            android:layout_height="@dimen/drawer_item_icon_size"
+            android:src="@drawable/ic_help"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/drawer_item_spacing"
+            android:text="@string/menu_help"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_privacy_policy"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawer_item_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/drawer_item_icon_size"
+            android:layout_height="@dimen/drawer_item_icon_size"
+            android:src="@drawable/ic_privacy"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/drawer_item_spacing"
+            android:text="@string/menu_privacy_policy"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_body" />
+    </LinearLayout>
+
+</LinearLayout>
