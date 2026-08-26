@@ -16,21 +16,6 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-/**
- * Displays the selected hospital's current status, computed live from its
- * configured [com.hospitalfinder.app.model.schedule.HospitalSchedule] via
- * [OperatingStateCalculator]. The displayed ticket count is a snapshot
- * only and is never treated as a reservation — pressing GET does not
- * decrement it locally.
- *
- * The bottom nav here is functional: tapping List simply returns to
- * MainActivity as-is; tapping Map returns a result telling MainActivity
- * to switch to the map tab. MainActivity's own fragment state (built on
- * show/hide, never destroy) is untouched by this — switching tabs this
- * way is exactly as if the user had tapped the tab directly in
- * MainActivity, so anything in progress on either tab (e.g. list scroll
- * position, map camera position) is preserved.
- */
 class HospitalDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHospitalDetailsBinding
@@ -50,7 +35,7 @@ class HospitalDetailsActivity : AppCompatActivity() {
         }
 
         binding.btnBack.setOnClickListener { finish() }
-        binding.btnMenu.visibility = View.INVISIBLE // no drawer on this screen; icon kept for layout balance, not interactive
+        binding.btnMenu.visibility = View.INVISIBLE
 
         binding.btnNavList.setOnClickListener { returnToMainActivity(MainActivity.TAB_LIST) }
         binding.btnNavMap.setOnClickListener { returnToMainActivity(MainActivity.TAB_MAP) }
@@ -109,7 +94,10 @@ class HospitalDetailsActivity : AppCompatActivity() {
                     R.string.details_message_closed, state.opensAt.format(timeFormatter)
                 )
                 binding.txtTickets.visibility = View.GONE
-                binding.txtTimeRemaining.visibility = View.GONE
+                binding.txtTimeRemaining.visibility = View.VISIBLE
+                binding.txtTimeRemaining.text = getString(
+                    R.string.details_time_until_open, formatDuration(state.timeUntilOpen)
+                )
                 setLunchLine(lunchStart)
                 setGetEnabled(false)
             }
@@ -150,15 +138,9 @@ class HospitalDetailsActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Deliberate integration seam for the future server-side atomic ticket
-     * reservation system. Currently a stub — no network call, no fake
-     * success state, and no local decrement of ticketsRemainingToday.
-     * This is only ever reachable when state == Open (see setGetEnabled),
-     * so it is never wired up while closed/lunch/full.
-     */
     private fun onGetPressed() {
-        // Intentionally left as an integration point — see class doc.
+        // Intentionally left as an integration point for the future
+        // server-side atomic ticket reservation system.
     }
 
     private fun formatDuration(duration: java.time.Duration): String {

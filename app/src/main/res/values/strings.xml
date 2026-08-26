@@ -50,6 +50,7 @@
     <string name="details_lunch_line">lunch time is %1$s</string>
     <string name="details_hours_line">opens at %1$s and closes at %2$s</string>
     <string name="details_time_remaining">%1$s left to close for today</string>
+    <string name="details_time_until_open">%1$s left to open</string>
 
     <!-- Hospital details: GET button -->
     <string name="btn_get">GET</string>

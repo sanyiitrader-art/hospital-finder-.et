@@ -33,6 +33,7 @@ sealed class HospitalOperatingState {
 
     /** Not currently operating for the day. */
     data class Closed(
-        val opensAt: LocalTime
+        val opensAt: LocalTime,
+        val timeUntilOpen: Duration
     ) : HospitalOperatingState()
 }

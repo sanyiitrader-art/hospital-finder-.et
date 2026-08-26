@@ -18,7 +18,10 @@ object OperatingStateCalculator {
 
     fun calculate(schedule: HospitalSchedule, now: LocalTime): HospitalOperatingState {
         if (!isWithinOperatingWindow(schedule.opensAt, schedule.closesAt, now)) {
-            return HospitalOperatingState.Closed(opensAt = schedule.opensAt)
+            return HospitalOperatingState.Closed(
+                opensAt = schedule.opensAt,
+                timeUntilOpen = durationUntil(now, schedule.opensAt)
+            )
         }
 
         val lunchStart = schedule.lunchStart
@@ -41,26 +44,14 @@ object OperatingStateCalculator {
         }
     }
 
-    /**
-     * True if [now] falls within [start]..[end], correctly handling the
-     * case where [end] is numerically earlier than [start] (an overnight
-     * window that crosses midnight).
-     */
     private fun isWithinOperatingWindow(start: LocalTime, end: LocalTime, now: LocalTime): Boolean {
         return if (end.isAfter(start)) {
-            // Same-day window, e.g. 09:00–17:00.
             !now.isBefore(start) && now.isBefore(end)
         } else {
-            // Overnight window, e.g. 14:30–00:30 (crosses midnight).
             !now.isBefore(start) || now.isBefore(end)
         }
     }
 
-    /**
-     * Duration from [now] until [target], correctly wrapping past
-     * midnight when [target] is numerically earlier than [now] (meaning
-     * it falls on the following calendar day).
-     */
     private fun durationUntil(now: LocalTime, target: LocalTime): Duration {
         return if (target.isAfter(now)) {
             Duration.between(now, target)
