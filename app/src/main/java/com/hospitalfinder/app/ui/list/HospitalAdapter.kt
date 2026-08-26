@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hospitalfinder.app.R
 import com.hospitalfinder.app.databinding.ItemHospitalCardBinding
@@ -13,8 +12,15 @@ import com.hospitalfinder.app.model.Hospital
 /**
  * Lightweight RecyclerView adapter for the hospital list.
  * Uses ListAdapter + DiffUtil so updates are cheap and scrolling stays smooth.
+ *
+ * Click handling is delegated to the caller via [onHospitalClick] rather
+ * than starting an activity directly, so the owning fragment can launch
+ * HospitalDetailsActivity through its own ActivityResultLauncher and react
+ * to a requested tab switch on return.
  */
-class HospitalAdapter : RecyclerView.Adapter<HospitalAdapter.HospitalViewHolder>() {
+class HospitalAdapter(
+    private val onHospitalClick: (Hospital) -> Unit
+) : RecyclerView.Adapter<HospitalAdapter.HospitalViewHolder>() {
 
     private val differ = androidx.recyclerview.widget.AsyncListDiffer(
         this,
@@ -33,7 +39,7 @@ class HospitalAdapter : RecyclerView.Adapter<HospitalAdapter.HospitalViewHolder>
         val binding = ItemHospitalCardBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return HospitalViewHolder(binding)
+        return HospitalViewHolder(binding, onHospitalClick)
     }
 
     override fun onBindViewHolder(holder: HospitalViewHolder, position: Int) {
@@ -43,7 +49,8 @@ class HospitalAdapter : RecyclerView.Adapter<HospitalAdapter.HospitalViewHolder>
     override fun getItemCount(): Int = differ.currentList.size
 
     class HospitalViewHolder(
-        private val binding: ItemHospitalCardBinding
+        private val binding: ItemHospitalCardBinding,
+        private val onHospitalClick: (Hospital) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(hospital: Hospital) {
@@ -68,10 +75,10 @@ class HospitalAdapter : RecyclerView.Adapter<HospitalAdapter.HospitalViewHolder>
                 )
             }
 
-            // No real image source is specified in current scope — show the
-            // placeholder icon and keep the ImageView itself empty/transparent.
             binding.imgHospital.setImageDrawable(null)
             binding.imgPlaceholderIcon.visibility = android.view.View.VISIBLE
+
+            binding.root.setOnClickListener { onHospitalClick(hospital) }
         }
     }
 }

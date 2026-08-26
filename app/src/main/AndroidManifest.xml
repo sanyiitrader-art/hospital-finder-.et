@@ -33,6 +33,12 @@
             android:theme="@style/Theme.HospitalFinder"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity
+            android:name=".ui.details.HospitalDetailsActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/Theme.HospitalFinder" />
+
     </application>
 
 </manifest>

@@ -34,6 +34,26 @@
     <string name="label_or">or</string>
     <string name="close_login">Close</string>
     <string name="google_icon_desc">Google</string>
+        
+        <!-- Hospital details: status -->
+    <string name="details_status_open">open</string>
+    <string name="details_status_closed">closed</string>
+
+    <!-- Hospital details: messages -->
+    <string name="details_message_open">you are able to get a ticket now</string>
+    <string name="details_message_tickets_full">today\'s tickets are full</string>
+    <string name="details_message_lunch">on lunch break — resumes at %1$s</string>
+    <string name="details_message_closed">opens at %1$s</string>
+
+    <!-- Hospital details: info lines -->
+    <string name="details_tickets_left">%1$d tickets left</string>
+    <string name="details_lunch_line">lunch time is %1$s</string>
+    <string name="details_hours_line">opens at %1$s and closes at %2$s</string>
+    <string name="details_time_remaining">%1$s left to close for today</string>
+
+    <!-- Hospital details: GET button -->
+    <string name="btn_get">GET</string>
+    <string name="btn_get_unavailable">GET UNAVAILABLE</string>
 
     <!-- Auth: PIN -->
     <string name="title_enter_pin">Enter Pin</string>

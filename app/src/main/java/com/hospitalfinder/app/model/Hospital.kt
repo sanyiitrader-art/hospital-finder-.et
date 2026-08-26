@@ -1,9 +1,10 @@
 package com.hospitalfinder.app.model
 
+import com.hospitalfinder.app.model.schedule.HospitalSchedule
+
 /**
- * Represents a single nearby hospital as shown in both the list and map views.
- * Fields are intentionally minimal per current scope — no queue data,
- * no pricing, no contact info beyond what the reference design shows.
+ * Represents a single nearby hospital as shown in both the list and map
+ * views, plus its operating schedule used by the hospital-details screen.
  */
 data class Hospital(
     val id: String,
@@ -11,5 +12,6 @@ data class Hospital(
     val isOpen: Boolean,
     val latitude: Double,
     val longitude: Double,
-    val imageUrl: String? = null
+    val imageUrl: String? = null,
+    val schedule: HospitalSchedule
 )

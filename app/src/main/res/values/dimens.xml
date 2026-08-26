@@ -56,6 +56,20 @@
     <dimen name="pin_title_text_size">34sp</dimen>
     <dimen name="pin_title_spacing_bottom">64dp</dimen>
 
+        <!-- Hospital details screen -->
+    <dimen name="details_horizontal_padding">24dp</dimen>
+    <dimen name="details_title_text_size">24sp</dimen>
+    <dimen name="details_title_spacing_bottom">24dp</dimen>
+    <dimen name="details_status_text_size">22sp</dimen>
+    <dimen name="details_status_dot_size">14dp</dimen>
+    <dimen name="details_status_spacing_bottom">20dp</dimen>
+    <dimen name="details_line_text_size">18sp</dimen>
+    <dimen name="details_line_spacing_vertical">18dp</dimen>
+    <dimen name="get_button_height">64dp</dimen>
+    <dimen name="get_button_corner_radius">32dp</dimen>
+    <dimen name="get_button_text_size">20sp</dimen>
+    <dimen name="get_button_spacing_top">32dp</dimen>
+
     <!-- Text -->
     <dimen name="text_size_title">17sp</dimen>
     <dimen name="text_size_body">15sp</dimen>

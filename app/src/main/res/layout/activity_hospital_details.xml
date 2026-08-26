@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <View
+        android:id="@+id/top_bar_bg"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/top_bar_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/top_bar_divider"
+        android:layout_width="0dp"
+        android:layout_height="1.5dp"
+        android:background="@color/teal_accent"
+        app:layout_constraintTop_toBottomOf="@id/top_bar_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_menu"
+        android:layout_width="@dimen/top_bar_height"
+        android:layout_height="@dimen/top_bar_height"
+        android:padding="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/menu_open"
+        android:src="@drawable/ic_menu"
+        app:layout_constraintTop_toTopOf="@id/top_bar_bg"
+        app:layout_constraintBottom_toBottomOf="@id/top_bar_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="4dp" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/top_bar_height"
+        android:layout_height="@dimen/top_bar_height"
+        android:padding="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/close_login"
+        android:src="@drawable/ic_close"
+        app:layout_constraintTop_toTopOf="@id/top_bar_bg"
+        app:layout_constraintBottom_toBottomOf="@id/top_bar_bg"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:id="@+id/details_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/top_bar_divider"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/details_horizontal_padding"
+            android:paddingTop="28dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:id="@+id/txt_hospital_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/details_title_text_size"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/details_title_spacing_bottom"
+                tools:text="City General Hospital"
+                xmlns:tools="http://schemas.android.com/tools" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/details_status_spacing_bottom">
+
+                <View
+                    android:id="@+id/status_dot"
+                    android:layout_width="@dimen/details_status_dot_size"
+                    android:layout_height="@dimen/details_status_dot_size"
+                    android:background="@drawable/status_dot" />
+
+                <TextView
+                    android:id="@+id/txt_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textSize="@dimen/details_status_text_size"
+                    android:textStyle="bold"
+                    tools:text="open"
+                    xmlns:tools="http://schemas.android.com/tools" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_accent_dark"
+                android:textSize="@dimen/details_line_text_size"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/details_line_spacing_vertical"
+                tools:text="you are able to get a ticket now"
+                xmlns:tools="http://schemas.android.com/tools" />
+
+            <TextView
+                android:id="@+id/txt_tickets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_accent_dark"
+                android:textSize="@dimen/details_line_text_size"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/details_line_spacing_vertical"
+                tools:text="30 tickets left"
+                xmlns:tools="http://schemas.android.com/tools" />
+
+            <TextView
+                android:id="@+id/txt_lunch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_accent_dark"
+                android:textSize="@dimen/details_line_text_size"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/details_line_spacing_vertical"
+                tools:text="lunch time is 1:00 PM"
+                xmlns:tools="http://schemas.android.com/tools" />
+
+            <TextView
+                android:id="@+id/txt_hours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_accent_dark"
+                android:textSize="@dimen/details_line_text_size"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/details_line_spacing_vertical"
+                tools:text="opens at 2:30 PM and closes at 12:30 AM"
+                xmlns:tools="http://schemas.android.com/tools" />
+
+            <TextView
+                android:id="@+id/txt_time_remaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_accent_dark"
+                android:textSize="@dimen/details_line_text_size"
+                android:textStyle="bold"
+                tools:text="2 hours left to close for today"
+                xmlns:tools="http://schemas.android.com/tools" />
+
+            <TextView
+                android:id="@+id/btn_get"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/get_button_height"
+                android:layout_marginTop="@dimen/get_button_spacing_top"
+                android:gravity="center"
+                android:text="@string/btn_get"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/get_button_text_size"
+                android:textStyle="bold"
+                android:background="@drawable/bg_get_button"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/bottom_bar_bg"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/bottom_bar_height"
+        android:background="@drawable/bg_bottom_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/bottom_bar_padding_horizontal"
+        android:paddingVertical="@dimen/bottom_bar_padding_vertical"
+        app:layout_constraintTop_toTopOf="@id/bottom_bar_bg"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_bar_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <FrameLayout
+            android:id="@+id/btn_nav_list"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_active_indicator"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/nav_list_view">
+
+            <ImageView
+                android:layout_width="@dimen/bottom_nav_icon_size"
+                android:layout_height="@dimen/bottom_nav_icon_size"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_list_view"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="@dimen/bottom_bar_item_spacing"
+            android:layout_height="1dp" />
+
+        <FrameLayout
+            android:id="@+id/btn_nav_map"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/nav_map_view">
+
+            <ImageView
+                android:layout_width="@dimen/bottom_nav_icon_size"
+                android:layout_height="@dimen/bottom_nav_icon_size"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_map_view"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

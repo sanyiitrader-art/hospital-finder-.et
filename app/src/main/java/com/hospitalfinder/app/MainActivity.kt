@@ -108,6 +108,18 @@ class MainActivity : AppCompatActivity() {
         drawerController.setup()
     }
 
+    /**
+     * Public entry point for other screens (e.g. HospitalDetailsActivity's
+     * bottom nav) to request a tab switch after returning to MainActivity.
+     * Since MainActivity is never finished/recreated when a downstream
+     * screen is opened, this reuses the same show/hide fragments already
+     * in memory — no state is lost switching tabs this way.
+     */
+    fun switchToTab(tab: Int) {
+        if (!mainUiInitialized) return
+        applyTabSelection(tab)
+    }
+
     private fun applyTabSelection(tab: Int) {
         activeTab = tab
 
@@ -143,8 +155,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG_LIST = "tag_hospital_list"
         private const val TAG_MAP = "tag_hospital_map"
-        private const val TAB_LIST = 0
-        private const val TAB_MAP = 1
+        const val TAB_LIST = 0
+        const val TAB_MAP = 1
         private const val STATE_ACTIVE_TAB = "state_active_tab"
     }
 }
