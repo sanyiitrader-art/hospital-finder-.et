@@ -15,18 +15,6 @@ import com.hospitalfinder.app.ui.map.HospitalMapFragment
 import com.hospitalfinder.app.ui.menu.DrawerController
 import com.hospitalfinder.app.util.setSelectedState
 
-/**
- * Main patient-facing screen: hosts the List/Map fragments (switched via
- * the bottom controls) and the side drawer menu (opened via the top-right
- * hamburger button). Uses the fragment show/hide pattern so switching
- * views is instantaneous and each fragment's state is preserved.
- *
- * On a fresh process start (SessionState.unlockedThisProcess == false),
- * this activity first routes through LoginActivity (login/PIN gate)
- * before any of the existing UI below is set up. Once unlocked within
- * this process, returning to MainActivity (e.g. via back stack or
- * background/foreground) does not re-trigger the gate.
- */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -43,10 +31,6 @@ class MainActivity : AppCompatActivity() {
             if (SessionState.unlockedThisProcess) {
                 initializeMainUiIfNeeded()
             } else {
-                // The user backed out of the login/PIN flow without
-                // completing it (neither authenticated nor guest) — there
-                // is no valid state to show, so close the app rather than
-                // leaving a blank MainActivity or looping the login screen.
                 finish()
             }
         }
@@ -111,13 +95,19 @@ class MainActivity : AppCompatActivity() {
     /**
      * Public entry point for other screens (e.g. HospitalDetailsActivity's
      * bottom nav) to request a tab switch after returning to MainActivity.
-     * Since MainActivity is never finished/recreated when a downstream
-     * screen is opened, this reuses the same show/hide fragments already
-     * in memory — no state is lost switching tabs this way.
+     *
+     * Deferred via post{} rather than applied synchronously: this callback
+     * fires from an ActivityResultCallback, which can run while
+     * FragmentManager is still mid-dispatch from the activity resuming.
+     * A nested commitNow at that exact moment throws
+     * "FragmentManager is already executing transactions". Posting defers
+     * the tab switch to the next frame, after that dispatch has settled,
+     * without changing behavior for the normal direct-tap path (which
+     * still calls applyTabSelection synchronously via setupBottomNav).
      */
     fun switchToTab(tab: Int) {
         if (!mainUiInitialized) return
-        applyTabSelection(tab)
+        binding.root.post { applyTabSelection(tab) }
     }
 
     private fun applyTabSelection(tab: Int) {
