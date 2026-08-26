@@ -55,6 +55,7 @@
     <!-- Hospital details: GET button -->
     <string name="btn_get">GET</string>
     <string name="btn_get_unavailable">GET UNAVAILABLE</string>
+    <string name="nav_back">Back</string>
 
     <!-- Auth: PIN -->
     <string name="title_enter_pin">Enter Pin</string>

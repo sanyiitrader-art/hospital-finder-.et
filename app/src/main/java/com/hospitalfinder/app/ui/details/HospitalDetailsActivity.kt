@@ -16,10 +16,21 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
+/**
+ * Displays the selected hospital's current status, computed live from its
+ * configured HospitalSchedule via OperatingStateCalculator.
+ *
+ * Leaving this screen always returns a result telling MainActivity which
+ * tab to show and which hospital was being viewed. MainActivity uses that
+ * to decide whether tapping the List tab later should show the plain list
+ * (back arrow / this screen's own List button) or reopen this same
+ * hospital's details (its Map button) — see MainActivity.pendingDetailsHospitalId.
+ */
 class HospitalDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHospitalDetailsBinding
     private val timeFormatter = DateTimeFormatter.ofPattern("h:mm a", Locale.getDefault())
+    private var currentHospitalId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +44,9 @@ class HospitalDetailsActivity : AppCompatActivity() {
             finish()
             return
         }
+        currentHospitalId = hospital.id
 
-        binding.btnBack.setOnClickListener { finish() }
+        binding.btnBack.setOnClickListener { returnToMainActivity(MainActivity.TAB_LIST) }
         binding.btnMenu.visibility = View.INVISIBLE
 
         binding.btnNavList.setOnClickListener { returnToMainActivity(MainActivity.TAB_LIST) }
@@ -47,7 +59,9 @@ class HospitalDetailsActivity : AppCompatActivity() {
     }
 
     private fun returnToMainActivity(tab: Int) {
-        val resultIntent = Intent().putExtra(EXTRA_RESULT_TAB, tab)
+        val resultIntent = Intent()
+            .putExtra(EXTRA_RESULT_TAB, tab)
+            .putExtra(EXTRA_RESULT_HOSPITAL_ID, currentHospitalId)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
     }
@@ -156,6 +170,7 @@ class HospitalDetailsActivity : AppCompatActivity() {
     companion object {
         private const val EXTRA_HOSPITAL_ID = "extra_hospital_id"
         const val EXTRA_RESULT_TAB = "extra_result_tab"
+        const val EXTRA_RESULT_HOSPITAL_ID = "extra_result_hospital_id"
 
         fun newIntent(context: Context, hospitalId: String): Intent =
             Intent(context, HospitalDetailsActivity::class.java)
