@@ -79,7 +79,7 @@
     <dimen name="settings_theme_option_icon_size">26dp</dimen>
     <dimen name="settings_theme_option_corner_radius">10dp</dimen>
     <dimen name="settings_theme_selector_corner_radius">16dp</dimen>
-    <dimen name="settings_row_height">56dp</dimen>
+    <dimen name="settings_row_height">72dp</dimen>
     <dimen name="settings_row_corner_radius">14dp</dimen>
     <dimen name="settings_row_padding_horizontal">18dp</dimen>
     <dimen name="settings_row_spacing">14dp</dimen>

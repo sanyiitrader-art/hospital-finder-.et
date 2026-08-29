@@ -7,7 +7,7 @@
     <color name="error_text">#C0392B</color>
 
     <!-- Surfaces -->
-    <color name="background">#F5F7F7</color>
+    <color name="background">#FFF9A6</color>
     <color name="surface">#FFFFFF</color>
     <color name="surface_variant">#EDF1F1</color>
     <color name="top_bar_bg">#FFFFFF</color>

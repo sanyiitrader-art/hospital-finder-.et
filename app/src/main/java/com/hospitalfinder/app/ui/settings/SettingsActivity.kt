@@ -2,6 +2,7 @@ package com.hospitalfinder.app.ui.settings
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.hospitalfinder.app.R
 import com.hospitalfinder.app.databinding.ActivitySettingsBinding
 import com.hospitalfinder.app.databinding.ItemSettingsRowBinding
@@ -41,9 +42,21 @@ class SettingsActivity : AppCompatActivity() {
         renderSelectedTheme(themePreferences.getMode())
     }
 
+    /**
+     * Applies the chosen theme immediately, in-place, without waiting for
+     * the activity to be recreated. AppCompatDelegate.setDefaultNightMode
+     * normally triggers a recreate on its own, but SettingsActivity opts
+     * out of automatic recreation for uiMode changes (see AndroidManifest,
+     * configChanges includes "uiMode") so this screen doesn't flicker or
+     * lose its scroll position mid-interaction. Calling
+     * AppCompatDelegate.setLocalNightMode + recreate() here does the same
+     * work explicitly, right when the user taps an option, so the change
+     * is visible instantly instead of only appearing once this screen is
+     * left and reopened.
+     */
     private fun selectTheme(mode: ThemeMode) {
         themePreferences.setMode(mode)
-        renderSelectedTheme(mode)
+        recreate()
     }
 
     private fun renderSelectedTheme(mode: ThemeMode) {
@@ -58,12 +71,6 @@ class SettingsActivity : AppCompatActivity() {
         )
     }
 
-    /**
-     * Renders a visible-but-inert row: no click listener attached at all
-     * (not just disabled styling), so there is no accidental tap-through
-     * to any placeholder behavior. Logout is styled in red text per the
-     * reference, matching image 4.
-     */
     private fun setupDisabledRow(row: ItemSettingsRowBinding, labelRes: Int, isDestructive: Boolean) {
         row.txtRowLabel.text = getString(labelRes)
         row.txtRowLabel.contentDescription =
