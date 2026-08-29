@@ -70,6 +70,22 @@
     <dimen name="get_button_text_size">20sp</dimen>
     <dimen name="get_button_spacing_top">32dp</dimen>
 
+        <!-- Settings screen -->
+    <dimen name="settings_horizontal_padding">20dp</dimen>
+    <dimen name="settings_section_spacing">20dp</dimen>
+    <dimen name="settings_theme_label_text_size">15sp</dimen>
+    <dimen name="settings_theme_selector_height">64dp</dimen>
+    <dimen name="settings_theme_selector_padding">6dp</dimen>
+    <dimen name="settings_theme_option_icon_size">26dp</dimen>
+    <dimen name="settings_theme_option_corner_radius">10dp</dimen>
+    <dimen name="settings_theme_selector_corner_radius">16dp</dimen>
+    <dimen name="settings_row_height">56dp</dimen>
+    <dimen name="settings_row_corner_radius">14dp</dimen>
+    <dimen name="settings_row_padding_horizontal">18dp</dimen>
+    <dimen name="settings_row_spacing">14dp</dimen>
+    <dimen name="settings_row_text_size">17sp</dimen>
+    <dimen name="family_add_icon_size">28dp</dimen>
+
     <!-- Text -->
     <dimen name="text_size_title">17sp</dimen>
     <dimen name="text_size_body">15sp</dimen>

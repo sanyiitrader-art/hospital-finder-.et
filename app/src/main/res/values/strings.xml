@@ -57,6 +57,19 @@
     <string name="btn_get_unavailable">GET UNAVAILABLE</string>
     <string name="nav_back">Back</string>
 
+        <!-- Settings -->
+    <string name="settings_title">settings</string>
+    <string name="settings_theme_label">theme</string>
+    <string name="settings_theme_light_desc">Light theme</string>
+    <string name="settings_theme_dark_desc">Dark theme</string>
+    <string name="settings_theme_system_desc">System default theme</string>
+    <string name="settings_change_pin">Change PIN</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_notification">Notification</string>
+    <string name="settings_logout">Logout</string>
+    <string name="settings_row_unavailable_desc">Not available yet</string>
+    <string name="family_add_desc">Add profile</string>
+
     <!-- Auth: PIN -->
     <string name="title_enter_pin">Enter Pin</string>
     <string name="hint_enter_pin">Enter Pin</string>
