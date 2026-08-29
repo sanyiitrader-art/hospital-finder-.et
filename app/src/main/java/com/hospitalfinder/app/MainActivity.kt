@@ -15,6 +15,7 @@ import com.hospitalfinder.app.ui.details.HospitalDetailsActivity
 import com.hospitalfinder.app.ui.list.HospitalListFragment
 import com.hospitalfinder.app.ui.map.HospitalMapFragment
 import com.hospitalfinder.app.ui.menu.DrawerController
+import com.hospitalfinder.app.ui.settings.SettingsActivity
 import com.hospitalfinder.app.util.setSelectedState
 
 class MainActivity : AppCompatActivity() {
@@ -28,15 +29,6 @@ class MainActivity : AppCompatActivity() {
     private var activeTab = TAB_LIST
     private var mainUiInitialized = false
 
-    /**
-     * Set when the user leaves a hospital-details screen via its Map
-     * button, remembering which hospital they were viewing. If the user
-     * then taps the List tab while this is set, they are taken back into
-     * that same hospital's details screen instead of the plain list.
-     * Cleared whenever the user leaves details via its back arrow or its
-     * own List button — both of those are the explicit "show me the
-     * plain list" action.
-     */
     private var pendingDetailsHospitalId: String? = null
 
     private val loginLauncher: ActivityResultLauncher<Intent> =
@@ -123,30 +115,18 @@ class MainActivity : AppCompatActivity() {
             authRepository = authRepository,
             onGuestProfileClick = {
                 loginLauncher.launch(LoginActivity.newIntentForceLogin(this))
+            },
+            onSettingsClick = {
+                startActivity(Intent(this, SettingsActivity::class.java))
             }
         )
         drawerController.setup()
     }
 
-    /**
-     * Opens the hospital-details screen for [hospitalId] through this
-     * activity's own launcher, so the result (which tab to show next, and
-     * whether to remember a pending hospital) is always handled the same
-     * way regardless of whether details was opened from the list fragment
-     * or re-opened via [pendingDetailsHospitalId].
-     */
     fun openHospitalDetails(hospitalId: String) {
         detailsLauncher.launch(HospitalDetailsActivity.newIntent(this, hospitalId))
     }
 
-    /**
-     * Deferred via post{} rather than applied synchronously: this runs
-     * from an ActivityResultCallback, which can fire while FragmentManager
-     * is still mid-dispatch from the activity resuming. A nested
-     * commitNow at that exact moment throws "FragmentManager is already
-     * executing transactions". Posting defers the switch to the next
-     * frame, after that dispatch has settled.
-     */
     private fun switchToTab(tab: Int) {
         if (!mainUiInitialized) return
         binding.root.post { applyTabSelection(tab) }
