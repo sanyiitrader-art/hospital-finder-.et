@@ -151,28 +151,28 @@
                 android:id="@+id/row_change_pin"
                 layout="@layout/item_settings_row"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/settings_row_height"
                 android:layout_marginBottom="@dimen/settings_row_spacing" />
 
             <include
                 android:id="@+id/row_language"
                 layout="@layout/item_settings_row"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/settings_row_height"
                 android:layout_marginBottom="@dimen/settings_row_spacing" />
 
             <include
                 android:id="@+id/row_notification"
                 layout="@layout/item_settings_row"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/settings_row_height"
                 android:layout_marginBottom="@dimen/settings_row_spacing" />
 
             <include
                 android:id="@+id/row_logout"
                 layout="@layout/item_settings_row"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="@dimen/settings_row_height" />
 
         </LinearLayout>
     </ScrollView>

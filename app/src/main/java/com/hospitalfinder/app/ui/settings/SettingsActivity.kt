@@ -2,7 +2,6 @@ package com.hospitalfinder.app.ui.settings
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import com.hospitalfinder.app.R
 import com.hospitalfinder.app.databinding.ActivitySettingsBinding
 import com.hospitalfinder.app.databinding.ItemSettingsRowBinding
@@ -43,20 +42,17 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     /**
-     * Applies the chosen theme immediately, in-place, without waiting for
-     * the activity to be recreated. AppCompatDelegate.setDefaultNightMode
-     * normally triggers a recreate on its own, but SettingsActivity opts
-     * out of automatic recreation for uiMode changes (see AndroidManifest,
-     * configChanges includes "uiMode") so this screen doesn't flicker or
-     * lose its scroll position mid-interaction. Calling
-     * AppCompatDelegate.setLocalNightMode + recreate() here does the same
-     * work explicitly, right when the user taps an option, so the change
-     * is visible instantly instead of only appearing once this screen is
-     * left and reopened.
+     * Applies the chosen theme immediately via recreate(). The default
+     * activity transition animation that recreate() triggers can fade
+     * through black on many devices — overridePendingTransition(0, 0)
+     * right after recreate() suppresses that animation entirely, so the
+     * screen updates to the new theme with no black flash in between.
      */
     private fun selectTheme(mode: ThemeMode) {
         themePreferences.setMode(mode)
         recreate()
+        @Suppress("DEPRECATION")
+        overridePendingTransition(0, 0)
     }
 
     private fun renderSelectedTheme(mode: ThemeMode) {
